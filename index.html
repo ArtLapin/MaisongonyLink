@@ -6,98 +6,371 @@
   <title>@maisongony</title>
   <meta name="description" content="MAISON GONY 공식 링크">
 
-  <!-- 카카오톡/SNS 공유 미리보기 -->
   <meta property="og:title" content="@maisongony">
   <meta property="og:description" content="MAISON GONY 공식 링크">
-  <meta property="og:image" content="https://[YOUR_USERNAME].github.io/maisongony-links/assets/gony-logo.jpg">
+  <meta property="og:image" content="https://[YOUR_USERNAME].github.io/maisongony-links/assets/gony-logo.png">
   <meta property="og:type" content="profile">
 
-  <link rel="icon" href="assets/gony-logo.jpg">
+  <link rel="icon" href="assets/gony-logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: #ffffff;
-      color: #000000;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 60px 20px 40px;
+    :root {
+      --bg: #146DE1;
+      --header-text: #fefbfb;
+      --btn-bg: #ffffff;
+      --btn-text: #0e0e0e;
+      --btn-hover: #ededed;
+      --btn-radius: 28px;
+      --btn-inner-radius: 20px;
+      --link-gap: 14px;
+      --container-width: 580px;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--header-text);
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 56px 16px 24px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Top-right share button */
+    .topbar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+    }
+    .share-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #0e0e0e;
+      transition: background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .share-btn:hover { background: #ffffff; }
+    .share-btn svg { width: 20px; height: 20px; }
+
+    /* Container */
     .container {
       width: 100%;
-      max-width: 680px;
+      max-width: var(--container-width);
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
+    /* Profile */
     .profile-img {
       width: 96px;
       height: 96px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 16px;
+      background: #ffffff;
+      margin-bottom: 14px;
     }
     .username {
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 32px;
+      color: var(--header-text);
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
     }
+
+    /* Links */
     .links {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: var(--link-gap);
     }
+
     .link-btn {
-      display: block;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
-      padding: 18px 20px;
-      background: #ffffff;
-      color: #000000;
-      text-align: center;
+      min-height: 58px;
+      padding: 14px 48px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
       text-decoration: none;
       font-size: 15px;
       font-weight: 600;
-      border: 1px solid #000000;
-      border-radius: 8px;
-      transition: transform 0.15s ease, background 0.15s ease;
+      font-family: inherit;
+      border: none;
+      border-radius: var(--btn-radius);
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
     }
     .link-btn:hover {
-      background: #f5f5f5;
-      transform: scale(1.02);
+      background: var(--btn-hover);
+      transform: scale(1.01);
     }
+    .link-btn .label {
+      pointer-events: none;
+    }
+
+    /* Per-link 3-dot share menu */
+    .link-more {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: var(--btn-text);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .link-more:hover { background: rgba(0, 0, 0, 0.06); }
+    .link-more svg { width: 18px; height: 18px; }
+
+    /* Card-style button (with image) */
+    .link-card {
+      padding: 8px 8px 0;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .link-card .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: var(--btn-inner-radius);
+      object-fit: cover;
+      display: block;
+    }
+    .link-card .card-footer {
+      position: relative;
+      width: 100%;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 48px;
+    }
+    .link-card .card-footer .label {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Social icons row */
+    .social-icons {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social-icons a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--header-text);
+      text-decoration: none;
+      border-radius: 50%;
+      transition: background 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .social-icons a:hover { background: rgba(255, 255, 255, 0.12); }
+    .social-icons svg { width: 24px; height: 24px; }
+
+    /* Footer */
     .footer {
-      margin-top: 48px;
+      margin-top: 36px;
       font-size: 12px;
-      color: #888;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      body { padding: 64px 16px 20px; }
+      .username { font-size: 17px; margin-bottom: 24px; }
+      .link-btn { font-size: 15px; min-height: 56px; }
+      .link-card .card-footer { min-height: 56px; }
+    }
+
+    /* Toast for clipboard fallback */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(0, 0, 0, 0.85);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header class="topbar">
+    <button class="share-btn" id="sharePage" aria-label="Share this page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path>
+        <polyline points="16 6 12 2 8 6"></polyline>
+        <line x1="12" y1="2" x2="12" y2="15"></line>
+      </svg>
+    </button>
+  </header>
+
+  <main class="container">
     <img src="assets/gony-logo.png" alt="MAISON GONY" class="profile-img">
     <h1 class="username">@maisongony</h1>
 
     <nav class="links">
-      <a href="https://maisongony.com/main" class="link-btn" target="_blank" rel="noopener">
-        MAISON GONY 온라인 스토어 [공식]
+      <a href="https://maisongony.com/main" class="link-btn" target="_blank" rel="noopener" data-share-title="MAISON GONY 온라인 스토어 [공식]">
+        <span class="label">MAISON GONY 온라인 스토어 [공식]</span>
+        <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="12" cy="5" r="1.6"></circle>
+            <circle cx="12" cy="12" r="1.6"></circle>
+            <circle cx="12" cy="19" r="1.6"></circle>
+          </svg>
+        </button>
       </a>
-      <a href="https://m.smartstore.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener">
-        Naver 스마트 스토어
+
+      <a href="https://m.smartstore.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener" data-share-title="Naver 스마트 스토어">
+        <span class="label">Naver 스마트 스토어</span>
+        <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="12" cy="5" r="1.6"></circle>
+            <circle cx="12" cy="12" r="1.6"></circle>
+            <circle cx="12" cy="19" r="1.6"></circle>
+          </svg>
+        </button>
       </a>
-      <a href="https://m.place.naver.com/place/1557546931/home?entry=pll" class="link-btn" target="_blank" rel="noopener">
-        오프라인 매장 & 스튜디오 [강릉]
+
+      <a href="https://m.place.naver.com/place/1557546931/home?entry=pll" class="link-btn link-card" target="_blank" rel="noopener" data-share-title="오프라인 매장 & 스튜디오 [강릉]">
+        <img src="assets/store.png" alt="MAISON GONY 강릉 매장" class="card-img" loading="lazy">
+        <div class="card-footer">
+          <span class="label">오프라인 매장 &amp; 스튜디오 [강릉]</span>
+          <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <circle cx="12" cy="5" r="1.6"></circle>
+              <circle cx="12" cy="12" r="1.6"></circle>
+              <circle cx="12" cy="19" r="1.6"></circle>
+            </svg>
+          </button>
+        </div>
       </a>
-      <a href="https://blog.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener">
-        Gony Story Blog
-      </a>
-      <a href="https://www.instagram.com/maisongony/" class="link-btn" target="_blank" rel="noopener">
-        Instagram
+
+      <a href="https://blog.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener" data-share-title="Gony Story Blog">
+        <span class="label">Gony Story Blog</span>
+        <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="12" cy="5" r="1.6"></circle>
+            <circle cx="12" cy="12" r="1.6"></circle>
+            <circle cx="12" cy="19" r="1.6"></circle>
+          </svg>
+        </button>
       </a>
     </nav>
 
+    <div class="social-icons">
+      <a href="https://www.instagram.com/maisongony/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+    </div>
+
     <p class="footer">© MAISON GONY</p>
-  </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">링크가 복사되었습니다</div>
+
+  <script>
+    (function () {
+      const toastEl = document.getElementById('toast');
+      let toastTimer;
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+      }
+
+      async function share(data) {
+        try {
+          if (navigator.share) {
+            await navigator.share(data);
+            return;
+          }
+        } catch (_) { /* user cancelled or failed */ }
+        try {
+          await navigator.clipboard.writeText(data.url);
+          showToast('링크가 복사되었습니다');
+        } catch (_) {
+          showToast('공유에 실패했습니다');
+        }
+      }
+
+      // Page share (top-right button)
+      document.getElementById('sharePage').addEventListener('click', () => {
+        share({
+          title: '@maisongony',
+          text: 'MAISON GONY 공식 링크',
+          url: location.href
+        });
+      });
+
+      // Per-link share (3-dot menu inside each button)
+      document.querySelectorAll('[data-share-from-parent]').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const link = btn.closest('a.link-btn');
+          if (!link) return;
+          share({
+            title: link.dataset.shareTitle || '@maisongony',
+            url: link.href
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
