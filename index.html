@@ -2,22 +2,48 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <title>@maisongony</title>
-  <meta name="description" content="MAISON GONY 공식 링크">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#146DE1">
+  <title>@maisongony · MAISON GONY 공식 링크</title>
+  <meta name="description" content="MAISON GONY 공식 링크 모음 — 온라인 스토어, 강릉 매장, 블로그, Instagram.">
 
-  <meta property="og:title" content="@maisongony">
-  <meta property="og:description" content="MAISON GONY 공식 링크">
-  <meta property="og:image" content="https://[YOUR_USERNAME].github.io/maisongony-links/assets/gony-logo.png">
+  <link rel="canonical" href="https://links.maisongony.com/">
+
+  <meta property="og:title" content="@maisongony · MAISON GONY 공식 링크">
+  <meta property="og:description" content="MAISON GONY 공식 링크 모음 — 온라인 스토어, 강릉 매장, 블로그, Instagram.">
+  <meta property="og:image" content="https://links.maisongony.com/assets/gony-logo.png">
+  <meta property="og:url" content="https://links.maisongony.com/">
   <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="MAISON GONY">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="@maisongony · MAISON GONY 공식 링크">
+  <meta name="twitter:description" content="MAISON GONY 공식 링크 모음 — 온라인 스토어, 강릉 매장, 블로그, Instagram.">
+  <meta name="twitter:image" content="https://links.maisongony.com/assets/gony-logo.png">
 
   <link rel="icon" href="assets/gony-logo.png">
+  <link rel="apple-touch-icon" href="assets/gony-logo.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <style>
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('assets/fonts/dmsans-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('assets/fonts/dmsans-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
     :root {
       --bg: #146DE1;
       --header-text: #fefbfb;
@@ -28,6 +54,7 @@
       --btn-inner-radius: 20px;
       --link-gap: 14px;
       --container-width: 580px;
+      --focus-ring: 0 0 0 3px rgba(255, 255, 255, 0.7);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +62,7 @@
     html, body { height: 100%; }
 
     body {
-      font-family: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
       background: var(--bg);
       color: var(--header-text);
       min-height: 100vh;
@@ -47,6 +74,9 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
+    a, button { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
     /* Top-right share button */
     .topbar {
@@ -67,7 +97,6 @@
       cursor: pointer;
       color: #0e0e0e;
       transition: background 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
     }
     .share-btn:hover { background: #ffffff; }
     .share-btn svg { width: 20px; height: 20px; }
@@ -106,14 +135,19 @@
       gap: var(--link-gap);
     }
 
-    .link-btn {
+    /* link-row wraps <a> + 3-dot <button> as siblings (valid HTML) */
+    .link-row {
       position: relative;
+      width: 100%;
+    }
+
+    .link-btn {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       min-height: 58px;
-      padding: 14px 48px;
+      padding: 14px 52px;
       background: var(--btn-bg);
       color: var(--btn-text);
       text-decoration: none;
@@ -122,19 +156,12 @@
       font-family: inherit;
       border: none;
       border-radius: var(--btn-radius);
-      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.15s ease, background 0.15s ease;
       text-align: center;
-      -webkit-tap-highlight-color: transparent;
     }
-    .link-btn:hover {
-      background: var(--btn-hover);
-      transform: scale(1.01);
-    }
-    .link-btn .label {
-      pointer-events: none;
-    }
+    .link-btn:hover { background: var(--btn-hover); transform: scale(1.01); }
 
-    /* Per-link 3-dot share menu */
+    /* Per-link 3-dot share menu — sibling of <a>, not child */
     .link-more {
       position: absolute;
       right: 14px;
@@ -152,7 +179,7 @@
       cursor: pointer;
       transition: background 0.15s ease;
     }
-    .link-more:hover { background: rgba(0, 0, 0, 0.06); }
+    .link-more:hover { background: rgba(0, 0, 0, 0.08); }
     .link-more svg { width: 18px; height: 18px; }
 
     /* Card-style button (with image) */
@@ -170,17 +197,19 @@
       display: block;
     }
     .link-card .card-footer {
-      position: relative;
       width: 100%;
       min-height: 58px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 48px;
-    }
-    .link-card .card-footer .label {
+      padding: 14px 52px;
       font-size: 15px;
       font-weight: 600;
+    }
+    .link-row--card .link-more {
+      top: auto;
+      bottom: 13px;
+      transform: none;
     }
 
     /* Social icons row */
@@ -200,7 +229,6 @@
       text-decoration: none;
       border-radius: 50%;
       transition: background 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
     }
     .social-icons a:hover { background: rgba(255, 255, 255, 0.12); }
     .social-icons svg { width: 24px; height: 24px; }
@@ -210,6 +238,33 @@
       margin-top: 36px;
       font-size: 12px;
       color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Desktop-only QR block (bottom-right) */
+    .qr-block {
+      display: none;
+      position: fixed;
+      right: 24px;
+      bottom: 20px;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--header-text);
+      font-size: 12px;
+      font-weight: 500;
+      z-index: 9;
+      user-select: none;
+    }
+    .qr-block img {
+      width: 120px;
+      height: 120px;
+      border-radius: 6px;
+      background: #ffffff;
+      padding: 6px;
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .qr-block { display: flex; }
     }
 
     /* Mobile */
@@ -237,15 +292,12 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 100;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <button class="share-btn" id="sharePage" aria-label="Share this page">
+    <button class="share-btn" id="sharePage" aria-label="이 페이지 공유">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path>
         <polyline points="16 6 12 2 8 6"></polyline>
@@ -255,60 +307,64 @@
   </header>
 
   <main class="container">
-    <img src="assets/gony-logo.png" alt="MAISON GONY" class="profile-img">
+    <img src="assets/gony-logo.png" alt="MAISON GONY" class="profile-img" width="96" height="96">
     <h1 class="username">@maisongony</h1>
 
-    <nav class="links">
-      <a href="https://maisongony.com/main" class="link-btn" target="_blank" rel="noopener" data-share-title="MAISON GONY 온라인 스토어 [공식]">
-        <span class="label">MAISON GONY 온라인 스토어 [공식]</span>
-        <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+    <nav class="links" aria-label="공식 링크">
+      <div class="link-row">
+        <a href="https://maisongony.com/main" class="link-btn" target="_blank" rel="noopener noreferrer">
+          <span class="label">MAISON GONY 온라인 스토어 [공식]</span>
+        </a>
+        <button type="button" class="link-more" aria-label="MAISON GONY 온라인 스토어 [공식] 링크 공유"
+          data-share-url="https://maisongony.com/main" data-share-title="MAISON GONY 온라인 스토어 [공식]">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <circle cx="12" cy="5" r="1.6"></circle>
-            <circle cx="12" cy="12" r="1.6"></circle>
-            <circle cx="12" cy="19" r="1.6"></circle>
+            <circle cx="12" cy="5" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="12" cy="19" r="1.6"></circle>
           </svg>
         </button>
-      </a>
+      </div>
 
-      <a href="https://m.smartstore.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener" data-share-title="Naver 스마트 스토어">
-        <span class="label">Naver 스마트 스토어</span>
-        <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+      <div class="link-row">
+        <a href="https://m.smartstore.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener noreferrer">
+          <span class="label">Naver 스마트 스토어</span>
+        </a>
+        <button type="button" class="link-more" aria-label="Naver 스마트 스토어 링크 공유"
+          data-share-url="https://m.smartstore.naver.com/maisongony" data-share-title="Naver 스마트 스토어">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <circle cx="12" cy="5" r="1.6"></circle>
-            <circle cx="12" cy="12" r="1.6"></circle>
-            <circle cx="12" cy="19" r="1.6"></circle>
+            <circle cx="12" cy="5" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="12" cy="19" r="1.6"></circle>
           </svg>
         </button>
-      </a>
+      </div>
 
-      <a href="https://m.place.naver.com/place/1557546931/home?entry=pll" class="link-btn link-card" target="_blank" rel="noopener" data-share-title="오프라인 매장 & 스튜디오 [강릉]">
-        <img src="assets/store.png" alt="MAISON GONY 강릉 매장" class="card-img" loading="lazy">
-        <div class="card-footer">
-          <span class="label">오프라인 매장 &amp; 스튜디오 [강릉]</span>
-          <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <circle cx="12" cy="5" r="1.6"></circle>
-              <circle cx="12" cy="12" r="1.6"></circle>
-              <circle cx="12" cy="19" r="1.6"></circle>
-            </svg>
-          </button>
-        </div>
-      </a>
-
-      <a href="https://blog.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener" data-share-title="Gony Story Blog">
-        <span class="label">Gony Story Blog</span>
-        <button type="button" class="link-more" aria-label="Share link" data-share-from-parent>
+      <div class="link-row link-row--card">
+        <a href="https://m.place.naver.com/place/1557546931/home?entry=pll" class="link-btn link-card" target="_blank" rel="noopener noreferrer">
+          <img src="assets/store.webp" alt="MAISON GONY 강릉 매장 외관" class="card-img" width="900" height="506" loading="lazy">
+          <div class="card-footer">
+            <span class="label">오프라인 매장 &amp; 스튜디오 [강릉]</span>
+          </div>
+        </a>
+        <button type="button" class="link-more" aria-label="오프라인 매장 &amp; 스튜디오 [강릉] 링크 공유"
+          data-share-url="https://m.place.naver.com/place/1557546931/home?entry=pll" data-share-title="오프라인 매장 &amp; 스튜디오 [강릉]">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <circle cx="12" cy="5" r="1.6"></circle>
-            <circle cx="12" cy="12" r="1.6"></circle>
-            <circle cx="12" cy="19" r="1.6"></circle>
+            <circle cx="12" cy="5" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="12" cy="19" r="1.6"></circle>
           </svg>
         </button>
-      </a>
+      </div>
+
+      <div class="link-row">
+        <a href="https://blog.naver.com/maisongony" class="link-btn" target="_blank" rel="noopener noreferrer">
+          <span class="label">Gony Story Blog</span>
+        </a>
+        <button type="button" class="link-more" aria-label="Gony Story Blog 링크 공유"
+          data-share-url="https://blog.naver.com/maisongony" data-share-title="Gony Story Blog">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <circle cx="12" cy="5" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="12" cy="19" r="1.6"></circle>
+          </svg>
+        </button>
+      </div>
     </nav>
 
     <div class="social-icons">
-      <a href="https://www.instagram.com/maisongony/" target="_blank" rel="noopener" aria-label="Instagram">
+      <a href="https://www.instagram.com/maisongony/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -319,6 +375,11 @@
 
     <p class="footer">© MAISON GONY</p>
   </main>
+
+  <aside class="qr-block" aria-hidden="true">
+    <span>View on mobile</span>
+    <img src="assets/qr.png" alt="" width="120" height="120">
+  </aside>
 
   <div class="toast" id="toast" role="status" aria-live="polite">링크가 복사되었습니다</div>
 
@@ -334,12 +395,16 @@
       }
 
       async function share(data) {
-        try {
-          if (navigator.share) {
+        if (navigator.share) {
+          try {
             await navigator.share(data);
             return;
+          } catch (err) {
+            // User cancelled the share sheet — do nothing.
+            if (err && err.name === 'AbortError') return;
+            // Otherwise fall through to clipboard fallback.
           }
-        } catch (_) { /* user cancelled or failed */ }
+        }
         try {
           await navigator.clipboard.writeText(data.url);
           showToast('링크가 복사되었습니다');
@@ -350,24 +415,18 @@
 
       // Page share (top-right button)
       document.getElementById('sharePage').addEventListener('click', () => {
-        share({
-          title: '@maisongony',
-          text: 'MAISON GONY 공식 링크',
-          url: location.href
-        });
+        share({ title: '@maisongony', text: 'MAISON GONY 공식 링크', url: location.href });
       });
 
-      // Per-link share (3-dot menu inside each button)
-      document.querySelectorAll('[data-share-from-parent]').forEach((btn) => {
+      // Per-link share (3-dot menu sibling of <a>)
+      document.querySelectorAll('.link-more').forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
-          const link = btn.closest('a.link-btn');
-          if (!link) return;
-          share({
-            title: link.dataset.shareTitle || '@maisongony',
-            url: link.href
-          });
+          const url = btn.dataset.shareUrl;
+          const title = btn.dataset.shareTitle || '@maisongony';
+          if (!url) return;
+          share({ title, url });
         });
       });
     })();
